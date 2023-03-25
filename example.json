@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "attendees": {
+      "type": "object",
+      "$id": "#attendees",
+      "properties": {
+        "userId": {
+          "type": "integer"
+        },
+        "access": {
+          "enum": [
+            "view",
+            "modify",
+            "sign",
+            "execute"
+          ]
+        },
+        "formAccess": {
+          "enum": [
+            "view",
+            "execute",
+            "execute_view"
+          ]
+        }
+      },
+      "required": [
+        "userId",
+        "access"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "attendees": {
+      "type": "array",
+      "items": {
+        "$ref": "#attendees"
+      },
+      "default": []
+    },
+    "form": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "viewModel": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "startDate",
+    "endDate",
+    "attendees"
+  ]
+}
