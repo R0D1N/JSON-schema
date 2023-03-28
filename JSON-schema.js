@@ -1,4 +1,4 @@
-const test1 = {
+const json_schema = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "attendees": {
@@ -43,9 +43,7 @@ const test1 = {
             ]
         },
         "title": {
-            "type": "number",
-            "minimum": 0,
-            "exclusiveMaximum": 10
+            "type": "string"
         },
         "description": {
             "type": "string"
@@ -160,17 +158,7 @@ const test1 = {
         "description",
         "startDate",
         "endDate",
-        "attendees",
-        "parentId",
-        "locationId",
-        "process",
-        "readOnly",
-        "priorProbability",
-        "channelId",
-        "externalId",
-        "tags",
-        "form",
-        "formValue"
+        "attendees"
     ]
 }
 let mainRecursive = (data) => {
@@ -236,7 +224,7 @@ function whatValue(body, data) {
                     value = randomString(10)
                 }
             }
-            
+
             break
         case 'number':
             if ("$ref" in body) {
@@ -255,7 +243,6 @@ function whatValue(body, data) {
             }
             break
         case 'array':
-
             let res = []
             value = []
             let min = body.minItems || 3;
@@ -292,14 +279,14 @@ function whatValue(body, data) {
 
             break
     }
-    return value    
+    return value
 }
 
 // Generates a random integer can be restricted to a multiple of a given number
 function generateRandomIntegerMultipleOf(multipleOf) {
-    const randomNum = Math.floor(Math.random() * 1000) + 1; // Generates a random number between 1 and 100
-    const remainder = randomNum % multipleOf; // Finds the remainder when the random number is divided by the given multiple
-    return  randomNum - remainder; // Subtracts the remainder from the random number to get the next lowest multiple of the given number
+    const randomNum = Math.floor(Math.random() * 1000) + 1
+    const remainder = randomNum % multipleOf;
+    return  randomNum - remainder;
 }
 
 // Generates a random boolean value
@@ -465,7 +452,5 @@ function integerChecker(body, type){
 
 // Shows in console output object
 for(let i = 0; i < 1; i++){
-    console.log(mainRecursive(test1))
+    console.log(mainRecursive(json_schema))
 }
-
-
